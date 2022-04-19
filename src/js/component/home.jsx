@@ -1,26 +1,32 @@
 import React from "react";
+import { useEffect, useState } from "react/cjs/react.production.min";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
-
-//create your first component
-const Home = () => {
-	return (
-		<div>
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
-};
-
-export default Home;
+componentDidMount() {
+	const requestOptions = {
+		method: 'POST',
+		headers: {'Content-Type': 'application/json'},
+		body: JSON.stringify({title: 'React Post Request Example'})
+	};
+	fetch('https://reqres.in/api/posts', requestOptions)
+	.then(response => response.json())
+	.then(data => console.log(data))
+}
+// const Home = (props) => {
+// 	const [data, setData] = useState("");
+// 	useEffect(() => {
+// 		fetch("https://jsonplaceholder.typicode.com/posts")
+// 			.then(response => response.json())
+// 			.then(data => this.setState({postId: data.title}),
+// 				(setData = data)
+// 			)
+// 	});
+// 	return (
+// 		<div>
+// 			{data &&
+// 				data.map((post) => {
+// 					return <p>{post.title}</p>;
+// 				})}
+// 		</div>
+// 	);
+// };
+//export default Home;
